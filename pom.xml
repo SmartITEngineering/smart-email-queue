@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *   
+ * This is a simple Content Management System (CMS)
+ * Copyright (C) 2011  Imran M Yousuf (imyousuf@smartitengineering.com)
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.smartitengineering</groupId>
+    <artifactId>smart-core</artifactId>
+    <version>0.1.9-SNAPSHOT</version>
+  </parent>
+  <groupId>com.smartitengineering</groupId>
+  <artifactId>smart-email-queue</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <name>Smart Email Queue</name>
+  <inceptionYear>2011</inceptionYear>
+  <description>
+        This project basically aims to create create a queue for sending email. This will provide an API for all use to
+        queue emails to be sent out. And another web application will send them out as requested.
+  </description>
+  <organization>
+    <name>Smart IT Engineering</name>
+    <url>http://www.smartitengineering.com</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>GPL v3</name>
+      <distribution>repo and manual</distribution>
+      <url>http://www.gnu.org/licenses/gpl-3.0-standalone.html</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>imyousuf</id>
+      <name>Imran M Yousuf</name>
+      <email>imyousuf@smartitengineering.com</email>
+      <organization>Smart IT Engineering</organization>
+      <timezone>GMT +0600</timezone>
+      <roles>
+        <role>Project Owner</role>
+        <role>Developer</role>
+        <role>Maintainer</role>
+      </roles>
+    </developer>
+  </developers>
+</project>
