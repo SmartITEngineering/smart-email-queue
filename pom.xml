@@ -156,5 +156,8 @@
   </properties>
   <modules>
     <module>emailq-domains</module>
+    <module>emailq-service</module>
+    <module>emailq-service-impl</module>
+    <module>emailq-guicebinder</module>
   </modules>
 </project>
