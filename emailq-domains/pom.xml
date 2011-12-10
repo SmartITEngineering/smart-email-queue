@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ *   
+ * This is a simple Email Queue management system
+ * Copyright (C) 2011  Imran M Yousuf (imyousuf@smartitengineering.com)
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>smart-email-queue</artifactId>
+    <groupId>com.smartitengineering</groupId>
+    <version>0.1-SNAPSHOT</version>
+  </parent>
+  <groupId>com.smartitengineering.smart-email-queue</groupId>
+  <artifactId>emailq-domains</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <name>Smart Email Queue Domains</name>
+  <dependencies>
+    <dependency>
+      <groupId>com.smartitengineering.smart-cms</groupId>
+      <artifactId>content-repo-dao-impl</artifactId>
+      <version>${smart.cms.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+  </dependencies>
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>com.smartitengineering.smart-cms</groupId>
+        <artifactId>maven-pojo-generator-plugin</artifactId>
+        <version>${smart.cms.version}</version>
+        <configuration>
+          <outputDirectory>${project.build.directory}/generated-sources/cms-pojo/</outputDirectory>
+          <workspaceId>${smart.email.queue.workspaceId.namespace}:${smart.email.queue.workspaceId.name}</workspaceId>
+        </configuration>
+        <executions>
+          <execution>
+            <id>generate-pojo-file</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+            <configuration>
+              <contentTypeResource>${project.build.directory}/classes/com/smartitengineering/emailq/domain/domain-content-type.xml</contentTypeResource>
+              <packageForGuiceMasterModule>com.smartitengineering.emailq.domain.di</packageForGuiceMasterModule>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>filter-resources</id>
+            <phase>initialize</phase>
+            <goals>
+              <goal>resources</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <smart.email.queue.workspaceId.namespace>com.smartitengineering</smart.email.queue.workspaceId.namespace>
+    <smart.email.queue.workspaceId.name>email-queue</smart.email.queue.workspaceId.name>
+    <smart.email.queue.contentType.email.namespace>com.smartitengineering.emailq.domain</smart.email.queue.contentType.email.namespace>
+  </properties>
+</project>

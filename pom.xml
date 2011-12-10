@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  *   
- * This is a simple Content Management System (CMS)
+ * This is a simple Email Queue management system
  * Copyright (C) 2011  Imran M Yousuf (imyousuf@smartitengineering.com)
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -154,4 +154,7 @@
     <smart.cms.tools.start.phase>test-compile</smart.cms.tools.start.phase>
     <smart.cms.tools.stop.phase>package</smart.cms.tools.stop.phase>
   </properties>
+  <modules>
+    <module>emailq-domains</module>
+  </modules>
 </project>

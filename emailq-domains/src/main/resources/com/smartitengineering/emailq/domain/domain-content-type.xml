@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contentTypes xmlns="http://www.smartitengineering.com/smart-cms/content/content-type-schema" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.smartitengineering.com/smart-cms/content/content-type-schema http://smart-cms.kenai.com/schemas/cms/content-type/dev/content-type-schema.xsd">
+  <contentType namespace="${smart.email.queue.contentType.email.namespace}">
+    <name>Email</name>
+    <primaryField>subject</primaryField>
+    <fields>
+      <field>
+        <name>subject</name>
+        <displayName>Subject</displayName>
+        <value>
+          <string>
+            <mimeType>text/plain</mimeType>
+          </string>
+        </value>
+      </field>
+    </fields>
+  </contentType>
+</contentTypes>
