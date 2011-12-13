@@ -79,7 +79,6 @@
         <plugin>
           <groupId>com.smartitengineering.smart-cms</groupId>
           <artifactId>cms-tools-plugin</artifactId>
-          <version>${smart.cms.version}</version>
           <inherited>true</inherited>
           <configuration>
             <outputDirectory>${project.build.directory}/cms-tools/</outputDirectory>
