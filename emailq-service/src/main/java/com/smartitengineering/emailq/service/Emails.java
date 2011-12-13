@@ -27,7 +27,7 @@ import java.util.Collection;
  */
 public class Emails {
 
-  private int totalCount;
+  private long totalCount;
   private Collection<Email> emails;
 
   public Collection<Email> getEmails() {
@@ -38,11 +38,11 @@ public class Emails {
     this.emails = emails;
   }
 
-  public int getTotalCount() {
+  public long getTotalCount() {
     return totalCount;
   }
 
-  public void setTotalCount(int totalCount) {
+  public void setTotalCount(long totalCount) {
     this.totalCount = totalCount;
   }
 }

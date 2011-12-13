@@ -109,6 +109,7 @@
                       <mimeType>text/plain</mimeType>
                     </string>
                   </value>
+                  <required>true</required>
                 </field>
                 <field>
                   <name>description</name>
@@ -118,6 +119,7 @@
                       <mimeType>text/plain</mimeType>
                     </string>
                   </value>
+                  <required>true</required>
                 </field>
                 <field>
                   <name>disposition</name>
@@ -136,6 +138,7 @@
                       <mimeType>application/octet-stream</mimeType>
                     </other>
                   </value>
+                  <required>true</required>
                 </field>
               </composition>
             </simple-value>
@@ -156,6 +159,13 @@
           <index>true</index>
           <store>true</store>
         </search>
+      </field>
+      <field>
+        <name>lastSendTrialTime</name>
+        <displayName>Last Send Trial Time</displayName>
+        <value>
+          <datetime />
+        </value>
       </field>
     </fields>
   </contentType>
