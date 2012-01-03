@@ -30,6 +30,18 @@
   <name>Smart Email Queue Service API Impl</name>
   <dependencies>
     <dependency>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.smartitengineering.smart-email-queue</groupId>
       <artifactId>emailq-service</artifactId>
       <version>${project.version}</version>

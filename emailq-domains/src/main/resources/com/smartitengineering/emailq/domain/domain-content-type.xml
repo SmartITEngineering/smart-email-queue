@@ -131,6 +131,16 @@
                   </value>
                 </field>
                 <field>
+                  <name>contentType</name>
+                  <displayName>Content Type</displayName>
+                  <value>
+                    <string>
+                      <mimeType>text/plain</mimeType>
+                    </string>
+                  </value>
+                  <required>true</required>
+                </field>
+                <field>
                   <name>blob</name>
                   <displayName>Blob</displayName>
                   <value>
