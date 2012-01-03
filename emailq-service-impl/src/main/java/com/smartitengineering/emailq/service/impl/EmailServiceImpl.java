@@ -77,6 +77,8 @@ public class EmailServiceImpl implements EmailService {
   private ExtendedReadDao<Email, String> extendedReadDao;
   @Inject
   private Session session;
+  @Inject(optional = true)
+  private Integer period = new Integer(120);
   private Scheduler scheduler;
   private final Semaphore sendEmailMutex = new Semaphore(1);
   private final transient Logger logger = LoggerFactory.getLogger(getClass());
@@ -95,7 +97,7 @@ public class EmailServiceImpl implements EmailService {
       scheduler = StdSchedulerFactory.getDefaultScheduler();
       JobDetail detail = new JobDetail("sendEmailJob", "sendEmailPoll", SendEmailJob.class);
       Trigger trigger = new DateIntervalTrigger("sendEmailTrigger", "sendEmailPoll",
-                                                DateIntervalTrigger.IntervalUnit.SECOND, 120);
+                                                DateIntervalTrigger.IntervalUnit.SECOND, period.intValue());
       scheduler.setJobFactory(new JobFactory() {
 
         public Job newJob(TriggerFiredBundle bundle) throws SchedulerException {
