@@ -1,4 +1,4 @@
-com.smartitengineering.email.queue.domains.workspaceId.namespace=${smart.email.queue.workspaceId.namespace}
-com.smartitengineering.email.queue.domains.workspaceId.name=${smart.email.queue.workspaceId.name}
-com.smartitengineering.email.queue.domains.report.namespace=${smart.email.queue.contentType.email.namespace}
+com.smartitengineering.emailq.domains.workspaceId.namespace=${smart.email.queue.workspaceId.namespace}
+com.smartitengineering.emailq.domains.workspaceId.name=${smart.email.queue.workspaceId.name}
+com.smartitengineering.emailq.domains.namespace=${smart.email.queue.contentType.email.namespace}
 

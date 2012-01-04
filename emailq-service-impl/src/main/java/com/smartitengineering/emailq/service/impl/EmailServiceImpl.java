@@ -20,6 +20,7 @@ package com.smartitengineering.emailq.service.impl;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import com.google.inject.name.Named;
 import com.smartitengineering.cms.repo.dao.impl.ExtendedReadDao;
 import com.smartitengineering.dao.common.CommonDao;
 import com.smartitengineering.dao.common.queryparam.MatchMode;
@@ -78,7 +79,11 @@ public class EmailServiceImpl implements EmailService {
   @Inject
   private Session session;
   @Inject(optional = true)
+  @Named("mailSenderCronDelayInSeonds")
   private Integer period = new Integer(120);
+  @Inject(optional = true)
+  @Named("mailSenderCronEnabled")
+  private Boolean cronEnabled = false;
   private Scheduler scheduler;
   private final Semaphore sendEmailMutex = new Semaphore(1);
   private final transient Logger logger = LoggerFactory.getLogger(getClass());
@@ -86,6 +91,9 @@ public class EmailServiceImpl implements EmailService {
 
   @Inject
   public void initSendMailCron() {
+    if (!cronEnabled.booleanValue()) {
+      return;
+    }
     try {
       transport = session.getTransport("smtp");
     }

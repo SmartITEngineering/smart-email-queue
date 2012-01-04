@@ -1,0 +1,20 @@
+contextName=com.smartitengineering.email.queue.service
+modules=com.smartitengineering.emailq.binder.guice.EmailModule,com.smartitengineering.emailq.domain.di.MasterModule
+ignoreMissingDependency=false
+domainProps=com/smartitengineering/emailq/domain/domain-configs.properties
+# Cron job delay in seconds is a setting to be able to modify how much slack is allowable for the targetted applications
+# cronJobDelayInSeconds=120
+
+# Cron job enabling switch
+# cronEnabled=false
+
+# The following are settings for Java Mail Session setup
+
+mail.smtp.host=localhost
+mail.smtp.port=2525
+mail.smtp.user=
+mail.smtp.pwd=
+mail.smtp.auth=false
+# The following 2 properties should be set to 'true' in mutually exclusive fashion, but both can be false
+mail.smtp.tls=false
+mail.smtp.ssl=false
