@@ -6,7 +6,7 @@ domainProps=com/smartitengineering/emailq/domain/domain-configs.properties
 # cronJobDelayInSeconds=120
 
 # Cron job enabling switch
-# cronEnabled=false
+cronEnabled=true
 
 # The following are settings for Java Mail Session setup
 

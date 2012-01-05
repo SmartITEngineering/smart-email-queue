@@ -119,7 +119,6 @@
                       <mimeType>text/plain</mimeType>
                     </string>
                   </value>
-                  <required>true</required>
                 </field>
                 <field>
                   <name>disposition</name>

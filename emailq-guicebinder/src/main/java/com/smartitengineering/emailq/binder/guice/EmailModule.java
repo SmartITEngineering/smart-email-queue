@@ -74,7 +74,7 @@ public class EmailModule extends AbstractModule {
       tlsEnabled = false;
       sslEnabled = false;
       cronDelayInSeconds = 120;
-      cronEnabled = false;
+      cronEnabled = true;
     }
     else {
       smtpHost = properties.getProperty(SMTP_HOST, "localhost");

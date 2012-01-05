@@ -222,6 +222,15 @@ public class EmailServiceImpl implements EmailService {
         else {
           logger.debug("FROM is NULL");
         }
+        if (email.getAttachments() != null) {
+          logger.debug("Attachments: " + Arrays.toString(email.getAttachments().toArray()));
+          for (Attachments attachment : email.getAttachments()) {
+            logger.debug("Attachment: " + attachment.getName());
+          }
+        }
+        else {
+          logger.debug("No attachments");
+        }
       }
       //Send email
       if (StringUtils.isBlank(email.getSubject()) || StringUtils.isBlank(email.getFrom())) {
@@ -286,7 +295,9 @@ public class EmailServiceImpl implements EmailService {
   private void addAttachment(Multipart multipart, Attachments attachment) throws MessagingException {
     MimeBodyPart attachmentPart = new MimeBodyPart();
     attachmentPart.setFileName(attachment.getName());
-    attachmentPart.setDescription(attachment.getDescription());
+    if (StringUtils.isNotBlank(attachment.getDescription())) {
+      attachmentPart.setDescription(attachment.getDescription());
+    }
     if (StringUtils.isNotBlank(attachment.getDisposition())) {
       attachmentPart.setDisposition(attachment.getDisposition());
     }
@@ -314,6 +325,7 @@ public class EmailServiceImpl implements EmailService {
       return false;
     }
     try {
+      email.setMailStatus(Email.MailStatus.NOT_SENT);
       commonDao.save(email);
       return true;
     }
