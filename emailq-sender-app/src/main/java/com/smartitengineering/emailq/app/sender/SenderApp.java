@@ -48,7 +48,14 @@ public class SenderApp {
   }
 
   public static void main(String[] args) {
-    SenderApp app = new SenderApp();
+    final SenderApp app = new SenderApp();
     app.init();
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+
+      @Override
+      public void run() {
+        //Add code to be executed during shutdown
+      }
+    });
   }
 }
