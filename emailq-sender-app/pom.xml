@@ -52,7 +52,7 @@
           <artifactId>appassembler-maven-plugin</artifactId>
           <executions>
             <execution>
-              <id>1-generate-jsw-scripts-assemble</id>
+              <id>1-generate-assemble</id>
               <phase>package</phase>
               <goals>
                 <goal>assemble</goal>
@@ -66,6 +66,28 @@
                 </programs>
               </configuration>
             </execution>
+            <execution>
+              <id>1-generate-daemon-scripts</id>
+              <phase>package</phase>
+              <goals>
+                <goal>generate-daemons</goal>
+              </goals>
+              <configuration>
+                <target>${project.build.directory}/appassemble-daemons</target>
+                <daemons>
+                  <daemon>
+                    <id>SmartEmailQueueSenderDaemon</id>
+                    <mainClass>com.smartitengineering.emailq.app.sender.SenderApp</mainClass>
+                    <commandLineArguments>
+                      <commandLineArgument>start</commandLineArgument>
+                    </commandLineArguments>
+                    <platforms>
+                      <platform>jsw</platform>
+                    </platforms>
+                  </daemon>
+                </daemons>
+              </configuration>
+            </execution>
           </executions>
         </plugin>
         <plugin>
@@ -73,17 +95,24 @@
           <artifactId>maven-antrun-plugin</artifactId>
           <executions>
             <execution>
-              <id>2-make-shell-script-executable</id>
+              <id>2-aggregate-files</id>
               <phase>package</phase>
               <goals>
                 <goal>run</goal>
               </goals>
               <configuration>
                 <tasks>
-                  <echo>Changing permission of ${project.build.directory}/appassemble/bin/SmartEmailQueueSenderApp</echo>
+                  <echo>Copy daemon files into appassemble</echo>
+                  <copy todir="${project.build.directory}/appassemble">
+                    <fileset dir="${project.build.directory}/appassemble-daemons/jsw/SmartEmailQueueSenderDaemon"/>
+                  </copy>
+                  <echo>Create the logs dir</echo>
+                  <mkdir dir="${project.build.directory}/appassemble/logs" />
+                  <echo>Changing permission of ${project.build.directory}/appassemble/bin/</echo>
                   <chmod perm="ugo+rx">
                     <fileset dir="${project.build.directory}/appassemble/bin">
                       <exclude name="**/*.bat" />
+                      <exclude name="**/*.exe" />
                     </fileset>
                   </chmod>
                 </tasks>
@@ -132,6 +161,10 @@
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-antrun-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
           </plugin>
         </plugins>
@@ -153,6 +186,26 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>2-change-file-permission</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>run</goal>
+                </goals>
+                <configuration>
+                  <tasks>
+                    <echo>Changing permission of ${project.build.directory}/appassemble/bin/</echo>
+                    <chmod perm="ugo+rx">
+                      <fileset dir="${project.build.directory}/appassemble/bin">
+                        <exclude name="**/*.bat" />
+                        <exclude name="**/*.exe" />
+                      </fileset>
+                    </chmod>
+                  </tasks>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
