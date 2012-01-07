@@ -28,6 +28,7 @@ import com.smartitengineering.dao.common.queryparam.QueryParameter;
 import com.smartitengineering.dao.common.queryparam.QueryParameterFactory;
 import com.smartitengineering.emailq.domain.Email;
 import com.smartitengineering.emailq.domain.Email.Attachments;
+import com.smartitengineering.emailq.domain.Email.Message.MsgType;
 import com.smartitengineering.emailq.service.EmailService;
 import com.smartitengineering.emailq.service.Emails;
 import java.lang.reflect.Constructor;
@@ -244,25 +245,31 @@ public class EmailServiceImpl implements EmailService {
       addRecipients(message, Message.RecipientType.TO, email.getTo());
       addRecipients(message, Message.RecipientType.CC, email.getCc());
       addRecipients(message, Message.RecipientType.BCC, email.getBcc());
-      Multipart multipart = new MimeMultipart();
-      if (email.getMessage() != null && StringUtils.isNotBlank(email.getMessage().getMsgBody())) {
-        MimeBodyPart bodyPart = new MimeBodyPart();
-        switch (email.getMessage().getMsgType()) {
-          case HTML:
-            bodyPart.setText(email.getMessage().getMsgBody(), "html");
-            break;
-          case PLAIN:
-          default:
-            bodyPart.setText(email.getMessage().getMsgBody());
-        }
-        multipart.addBodyPart(bodyPart);
+      if (email.getMessage() != null && StringUtils.isNotBlank(email.getMessage().getMsgBody()) && email.getMessage().
+          getMsgType().equals(MsgType.PLAIN) && (email.getAttachments() == null || email.getAttachments().isEmpty())) {
+        message.setText(email.getMessage().getMsgBody());
       }
-      if (email.getAttachments() != null && !email.getAttachments().isEmpty()) {
-        for (Attachments attachment : email.getAttachments()) {
-          addAttachment(multipart, attachment);
+      else {
+        Multipart multipart = new MimeMultipart();
+        if (email.getMessage() != null && StringUtils.isNotBlank(email.getMessage().getMsgBody())) {
+          MimeBodyPart bodyPart = new MimeBodyPart();
+          switch (email.getMessage().getMsgType()) {
+            case HTML:
+              bodyPart.setContent(email.getMessage().getMsgBody(), "html");
+              break;
+            case PLAIN:
+            default:
+              bodyPart.setText(email.getMessage().getMsgBody());
+          }
+          multipart.addBodyPart(bodyPart);
         }
+        if (email.getAttachments() != null && !email.getAttachments().isEmpty()) {
+          for (Attachments attachment : email.getAttachments()) {
+            addAttachment(multipart, attachment);
+          }
+        }
+        message.setContent(multipart);
       }
-      message.setContent(multipart);
       Transport.send(message);
       if (logger.isDebugEnabled()) {
         logger.debug("Sent " + email.getId());

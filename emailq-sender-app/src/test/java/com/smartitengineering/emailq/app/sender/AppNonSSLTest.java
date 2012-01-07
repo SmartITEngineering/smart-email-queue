@@ -136,6 +136,17 @@ public class AppNonSSLTest {
     email.setAttachments(Arrays.asList(attachment1, attachment2));
     Assert.assertNotNull(email.getAttachments());
     Assert.assertFalse(email.getAttachments().isEmpty());
+    Email email2 = new Email();
+    email2.setFrom("imran@smartitengineering.com");
+    email2.setTo(Arrays.<String>asList("imyousuf@gmail.com"));
+    email2.setCc(Arrays.<String>asList("jersey@smartitengineering.com"));
+    email2.setBcc(Arrays.<String>asList("imran.yousuf@smartitengineering.com"));
+    email2.setSubject("Test Subject");
+    Message message2 = new Message();
+    message2.setMsgType(Message.MsgType.PLAIN);
+    message2.setMsgBody("Test Message Body");
+    email2.setMessage(message2);
+    Services.getInstance().getEmailService().saveEmail(email2);
     Services.getInstance().getEmailService().saveEmail(email);
     Assert.assertNotNull(email.getAttachments());
     Assert.assertFalse(email.getAttachments().isEmpty());
