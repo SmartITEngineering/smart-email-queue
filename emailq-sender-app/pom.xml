@@ -108,13 +108,6 @@
                   </copy>
                   <echo>Create the logs dir</echo>
                   <mkdir dir="${project.build.directory}/appassemble/logs" />
-                  <echo>Changing permission of ${project.build.directory}/appassemble/bin/</echo>
-                  <chmod perm="ugo+rx">
-                    <fileset dir="${project.build.directory}/appassemble/bin">
-                      <exclude name="**/*.bat" />
-                      <exclude name="**/*.exe" />
-                    </fileset>
-                  </chmod>
                 </tasks>
               </configuration>
             </execution>
