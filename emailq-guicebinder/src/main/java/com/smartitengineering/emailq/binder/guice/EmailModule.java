@@ -105,7 +105,7 @@ public class EmailModule extends AbstractModule {
 
   @Override
   protected void configure() {
-    bind(EmailService.class).to(EmailServiceImpl.class).in(Singleton.class);
+    bind(EmailService.class).to(EmailServiceImpl.class).asEagerSingleton();
     configureJavaMailSession();
     if (cronDelayInSeconds > 0) {
       bind(Integer.class).annotatedWith(Names.named("mailSenderCronDelayInSeonds")).toInstance(new Integer(
