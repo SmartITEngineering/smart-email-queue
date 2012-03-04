@@ -92,7 +92,7 @@ public final class Initializer {
                                                    "");
     final WorkspaceAPI workspaceApi = SmartContentAPI.getInstance().getWorkspaceApi();
     WorkspaceId workspaceId = workspaceApi.createWorkspaceId(workspaceIdNamespace, workspaceIdName);
-    Workspace workspace = workspaceId.getWorkspae();
+    Workspace workspace = workspaceId.getWorkspace();
     if (workspace == null) {
       workspaceApi.createWorkspace(workspaceId);
     }
