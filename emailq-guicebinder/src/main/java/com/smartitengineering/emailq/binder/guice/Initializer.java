@@ -91,6 +91,7 @@ public final class Initializer {
     String workspaceIdName = mainProps.getProperty("com.smartitengineering.emailq.domains.workspaceId.name",
                                                    "");
     final WorkspaceAPI workspaceApi = SmartContentAPI.getInstance().getWorkspaceApi();
+    LOGGER.info("Trying to load workspace " + workspaceIdNamespace + ":" + workspaceIdName);
     WorkspaceId workspaceId = workspaceApi.createWorkspaceId(workspaceIdNamespace, workspaceIdName);
     Workspace workspace = workspaceId.getWorkspace();
     if (workspace == null) {

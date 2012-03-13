@@ -19,7 +19,6 @@
 package com.smartitengineering.emailq.binder.guice;
 
 import com.google.inject.AbstractModule;
-import com.google.inject.Singleton;
 import com.google.inject.name.Names;
 import com.smartitengineering.emailq.service.EmailService;
 import com.smartitengineering.emailq.service.impl.EmailServiceImpl;
